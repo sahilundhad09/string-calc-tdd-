@@ -16,4 +16,10 @@ describe("StringCalculator", () => {
     expect(calculator.add("1,5")).toBe(6)
     expect(calculator.add("2,3")).toBe(5)
   })
+
+  test("should handle any amount of numbers", () => {
+    const calculator = new StringCalculator()
+    expect(calculator.add("1,2,3")).toBe(6)
+    expect(calculator.add("1,2,3,4,5")).toBe(15)
+  })
 })
