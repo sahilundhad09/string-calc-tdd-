@@ -27,7 +27,7 @@ class StringCalculator {
   _checkForNegatives(numbers) {
     const negatives = numbers.filter((num) => num < 0)
     if (negatives.length > 0) {
-      throw new Error(`negative numbers not allowed ${negatives[0]}`)
+      throw new Error(`negative numbers not allowed ${negatives.join(",")}`)
     }
   }
 }
