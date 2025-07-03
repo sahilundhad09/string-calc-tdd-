@@ -5,15 +5,11 @@ class StringCalculator {
     }
 
     const { delimiter, numbersString } = this._parseDelimiter(numbers)
-    const numberArray = numbersString.split(delimiter)
-    const parsedNumbers = numberArray.map((num) => Number.parseInt(num))
+    const parsedNumbers = this._parseNumbers(numbersString, delimiter)
 
-    const negatives = parsedNumbers.filter((num) => num < 0)
-    if (negatives.length > 0) {
-      throw new Error(`negative numbers not allowed ${negatives.join(",")}`)
-    }
+    this._validateNumbers(parsedNumbers)
 
-    return parsedNumbers.filter((num) => num <= 1000).reduce((sum, num) => sum + num, 0)
+    return this._sumNumbers(parsedNumbers)
   }
 
   _parseDelimiter(numbers) {
@@ -25,6 +21,21 @@ class StringCalculator {
     }
 
     return { delimiter: /[,\n]/, numbersString: numbers }
+  }
+
+  _parseNumbers(numbersString, delimiter) {
+    return numbersString.split(delimiter).map((num) => Number.parseInt(num))
+  }
+
+  _validateNumbers(numbers) {
+    const negatives = numbers.filter((num) => num < 0)
+    if (negatives.length > 0) {
+      throw new Error(`negative numbers not allowed ${negatives.join(",")}`)
+    }
+  }
+
+  _sumNumbers(numbers) {
+    return numbers.filter((num) => num <= 1000).reduce((sum, num) => sum + num, 0)
   }
 }
 
