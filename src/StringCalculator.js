@@ -4,8 +4,17 @@ class StringCalculator {
       return 0
     }
     
-   const numberArray = numbers.split(/[,\n]/)  
-       return numberArray.reduce((sum, num) => sum + Number.parseInt(num), 0)
+   let delimiter = /[,\n]/
+    let numbersString = numbers
+
+    if (numbers.startsWith("//")) {
+      const delimiterEndIndex = numbers.indexOf("\n")
+      delimiter = numbers.substring(2, delimiterEndIndex)
+      numbersString = numbers.substring(delimiterEndIndex + 1)
+    }
+
+    const numberArray = numbersString.split(delimiter)
+    return numberArray.reduce((sum, num) => sum + Number.parseInt(num), 0)
 
   }
 }
