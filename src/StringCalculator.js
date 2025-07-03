@@ -8,11 +8,7 @@ class StringCalculator {
         return parseInt(numbers);
 
     const numberArray = numbers.split(",")
-    let sum = 0
-    for (let i = 0; i < numberArray.length; i++) {
-      sum += Number.parseInt(numberArray[i])
-    }
-    return sum 
+    return numberArray.reduce((sum, num) => sum + Number.parseInt(num), 0)
   }
 }
 
